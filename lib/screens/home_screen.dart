@@ -54,7 +54,25 @@ class _HomeScreenState extends State<HomeScreen>
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 12),
+                    // Bouton retour plateforme
+                    Row(
+                      children: [
+                        TextButton.icon(
+                          onPressed: () => Navigator.of(context).pop(),
+                          icon: const Icon(Icons.arrow_back_ios,
+                              size: 14, color: Color(0xFFB0BEC5)),
+                          label: const Text(
+                            'Plateforme',
+                            style: TextStyle(
+                              color: Color(0xFFB0BEC5),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
                     _buildLogo(),
                     const SizedBox(height: 32),
                     _buildHero(),
