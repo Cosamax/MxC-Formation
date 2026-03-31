@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CDC — MxC Formations</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 900px; margin: 40px auto; color: #1a1a2e; line-height: 1.7; padding: 0 30px; }
+  h1 { color: #0a1628; border-bottom: 4px solid #f4c430; padding-bottom: 12px; font-size: 28px; }
+  h2 { color: #142244; border-left: 5px solid #f4c430; padding-left: 14px; margin-top: 40px; }
+  h3 { color: #1e3264; margin-top: 28px; }
+  h4 { color: #243b70; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  th { background: #0a1628; color: #f4c430; padding: 10px 14px; text-align: left; }
+  td { padding: 9px 14px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) { background: #f8f9ff; }
+  code, pre { background: #f0f4ff; padding: 3px 8px; border-radius: 5px; font-size: 13px; }
+  pre { padding: 16px; line-height: 1.6; overflow-x: auto; border-left: 4px solid #f4c430; }
+  li { margin: 5px 0; }
+  .badge-ok { color: #27ae60; font-weight: bold; }
+  .badge-wait { color: #f39c12; }
+  footer { margin-top: 60px; padding-top: 20px; border-top: 2px solid #e0e0e0; color: #888; font-size: 13px; text-align: center; }
+  .header-block { background: linear-gradient(135deg, #0a1628, #1e3264); color: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; }
+  .header-block h1 { color: #f4c430; border-bottom: 2px solid #f4c430; }
+  .header-block p { color: #b0bec5; margin: 4px 0; }
+</style>
+</head>
+<body>
+<div class="header-block">
+<h1>📋 CAHIER DES CHARGES — MxC Formations</h1>
+<p>Plateforme Éducative Gamifiée Multi-Applications</p>
+<p>Version 1.0 — Mars 2025</p>
+</div>
+<h2>Plateforme Éducative Gamifiée Multi-Applications</h2>
+<h3>Version 1.0 — Mars 2025</h3>
+<br>
+<hr>
+<br>
+<h2>1. PRÉSENTATION DU PROJET</h2>
+<br>
+<h3>1.1 Contexte</h3>
+<p>MxC Formations est une plateforme éducative numérique destinée à centraliser, </p>
+<p>distribuer et suivre des applications pédagogiques gamifiées à destination </p>
+<p>des étudiants de l'enseignement supérieur.</p>
+<br>
+<p>La plateforme s'adresse à un double public :</p>
+<li>Les **professeurs / formateurs** qui créent et administrent les jeux</li>
+<li>Les **étudiants** qui jouent et progressent</li>
+<br>
+<h3>1.2 Genèse</h3>
+<p>La plateforme est née du développement de "Legal Quest", un business game </p>
+<p>sur le droit de l'internet et du e-commerce (UC D51.2 — Mastère E-Business).</p>
+<p>L'objectif est d'étendre ce modèle à toutes les matières enseignées.</p>
+<br>
+<h3>1.3 Objectifs pédagogiques</h3>
+<li>Consolider les acquis du cours par le jeu (learning by doing)</li>
+<li>Favoriser l'engagement et la motivation des étudiants</li>
+<li>Permettre au professeur de mesurer la compréhension en temps réel</li>
+<li>Créer un outil réutilisable et évolutif par matière</li>
+<br>
+<hr>
+<br>
+<h2>2. DESCRIPTION FONCTIONNELLE</h2>
+<br>
+<h3>2.1 Architecture générale</h3>
+<br>
+<p>La plateforme se compose de TROIS espaces distincts :</p>
+<br>
+<pre>
+MxC FORMATIONS PLATFORM
+│
+├── ESPACE ÉTUDIANT (app mobile + web)
+│   ├── Catalogue des jeux disponibles
+│   ├── Connexion par code de promo/session
+│   ├── Jeu en solo ou en équipe
+│   ├── Tableau de bord personnel
+│   └── Badges et classements
+│
+├── ESPACE PROFESSEUR (web)  
+│   ├── Dashboard de suivi
+│   ├── Création et gestion des jeux
+│   ├── Gestion des promotions/sessions
+│   ├── Statistiques détaillées
+│   └── Export des résultats
+│
+└── BACK-END (Firebase)
+    ├── Base de données (Firestore)
+    ├── Authentification
+    └── Stockage des médias
+</pre>
+<br>
+<hr>
+<br>
+<h2>3. FONCTIONNALITÉS DÉTAILLÉES</h2>
+<br>
+<h3>3.1 ESPACE ÉTUDIANT</h3>
+<br>
+<h4>3.1.1 Connexion & Profil</h4>
+<li>☐ Connexion par prénom + nom + code de promo (ex: MEBB2025)</li>
+<li>☐ Pas de mot de passe (friction minimale)</li>
+<li>☐ Profil étudiant : nom, promo, niveau XP, badges obtenus</li>
+<li>☐ Avatar sélectionnable parmi 8 propositions</li>
+<br>
+<h4>3.1.2 Catalogue des jeux</h4>
+<li>☐ Vue grille des jeux disponibles (assignés par le prof)</li>
+<li>☐ Chaque jeu affiche : titre, matière, durée, niveau, nb joueurs</li>
+<li>☐ Statut : À faire / En cours / Terminé / Verrouillé</li>
+<li>☐ Barre de progression globale (% du catalogue complété)</li>
+<br>
+<h4>3.1.3 Expérience de jeu</h4>
+<li>☐ Mode Solo : jouer seul à son rythme</li>
+<li>☐ Mode Équipe : jusqu'à 4 équipes sur le même écran</li>
+<li>☐ Mode Classe : le prof projette, les étudiants votent sur téléphone</li>
+<li>☐ Chronomètre par question</li>
+<li>☐ Explication après chaque réponse avec référence au cours</li>
+<li>☐ Score calculé avec bonus de vitesse</li>
+<li>☐ Badges pour les séries de bonnes réponses</li>
+<br>
+<h4>3.1.4 Tableau de bord étudiant</h4>
+<li>☐ Score total cumulé (XP)</li>
+<li>☐ Historique des parties jouées</li>
+<li>☐ Taux de réussite par matière</li>
+<li>☐ Classement dans la promo</li>
+<li>☐ Badges et trophées obtenus</li>
+<br>
+<hr>
+<br>
+<h3>3.2 ESPACE PROFESSEUR</h3>
+<br>
+<h4>3.2.1 Authentification</h4>
+<li>☐ Connexion sécurisée email + mot de passe</li>
+<li>☐ Récupération de mot de passe par email</li>
+<li>☐ Profil professeur : nom, établissement, matières enseignées</li>
+<br>
+<h4>3.2.2 Dashboard principal</h4>
+<li>☐ Vue d'ensemble : nb étudiants actifs, nb jeux, nb sessions</li>
+<li>☐ Graphique d'activité hebdomadaire</li>
+<li>☐ Dernières sessions jouées</li>
+<li>☐ Alertes : étudiants en difficulté (taux < 40%)</li>
+<li>☐ Score moyen de la promo par jeu</li>
+<br>
+<h4>3.2.3 Gestion des jeux</h4>
+<li>☐ Liste de tous les jeux créés</li>
+<li>☐ Créer un nouveau jeu (nom, matière, description, durée estimée)</li>
+<li>☐ Dupliquer un jeu existant</li>
+<li>☐ Archiver / supprimer un jeu</li>
+<li>☐ Assigner un jeu à une ou plusieurs promos</li>
+<br>
+<h4>3.2.4 Éditeur de questions</h4>
+<li>☐ Ajouter une question (texte de la question)</li>
+<li>☐ Types de questions :</li>
+<li style="margin-left:20px">QCM (2 à 4 réponses)</li>
+<li style="margin-left:20px">Vrai / Faux</li>
+<li style="margin-left:20px">Scénario (mise en situation)</li>
+<li style="margin-left:20px">Défi Flash (chrono court)</li>
+<li>☐ Définir la bonne réponse</li>
+<li>☐ Ajouter une explication (affichée après réponse)</li>
+<li>☐ Référence au cours (numéro de fiche, chapitre)</li>
+<li>☐ Niveau de difficulté : Facile / Moyen / Difficile</li>
+<li>☐ Points attribués (auto-calculés selon difficulté)</li>
+<li>☐ Temps alloué (en secondes)</li>
+<li>☐ Organiser les questions en modules thématiques</li>
+<br>
+<h4>3.2.5 Gestion des promotions</h4>
+<li>☐ Créer une promo (nom, année, code d'accès unique)</li>
+<li>☐ Ajouter/supprimer des étudiants</li>
+<li>☐ Voir la liste des étudiants inscrits</li>
+<li>☐ Assigner des jeux à la promo</li>
+<li>☐ Générer un QR code d'accès pour la promo</li>
+<br>
+<h4>3.2.6 Gestion des sessions de jeu</h4>
+<li>☐ Créer une session (jeu + promo + date)</li>
+<li>☐ Lancer / mettre en pause / terminer une session</li>
+<li>☐ Code session à 6 chiffres pour rejoindre en temps réel</li>
+<li>☐ Vue en direct : qui a rejoint, scores en temps réel</li>
+<li>☐ Timer global de session</li>
+<br>
+<h4>3.2.7 Statistiques & Rapports</h4>
+<li>☐ Statistiques par jeu :</li>
+<li style="margin-left:20px">Score moyen / médian / max / min</li>
+<li style="margin-left:20px">Taux de réussite par question</li>
+<li style="margin-left:20px">Questions les plus échouées (en rouge)</li>
+<li style="margin-left:20px">Durée moyenne de la session</li>
+<li>☐ Statistiques par étudiant :</li>
+<li style="margin-left:20px">Historique de toutes les parties</li>
+<li style="margin-left:20px">Évolution du score dans le temps</li>
+<li style="margin-left:20px">Points forts et points faibles par thème</li>
+<li>☐ Statistiques par promo :</li>
+<li style="margin-left:20px">Classement de la promo</li>
+<li style="margin-left:20px">Distribution des scores (graphique)</li>
+<li style="margin-left:20px">Comparaison entre promos</li>
+<li>☐ Export des résultats :</li>
+<li style="margin-left:20px">CSV (Excel)</li>
+<li style="margin-left:20px">PDF récapitulatif</li>
+<br>
+<hr>
+<br>
+<h3>3.3 GESTION DU CONTENU</h3>
+<br>
+<h4>3.3.1 Bibliothèque de jeux</h4>
+<li>☐ Jeux privés (visibles uniquement par le créateur)</li>
+<li>☐ Jeux partagés (visibles par tous les profs de la plateforme)</li>
+<li>☐ Jeux officiels MxC (créés par l'admin)</li>
+<li>☐ Système de tags : matière, niveau, durée, public cible</li>
+<br>
+<h4>3.3.2 Jeux inclus au lancement</h4>
+<li>☐ Legal Quest — Droit de l'Internet (20 fiches, 29 questions) ✅</li>
+<li>☐ [Extensible] Marketing Digital — à créer</li>
+<li>☐ [Extensible] Finance d'entreprise — à créer</li>
+<li>☐ [Extensible] Management RH — à créer</li>
+<br>
+<hr>
+<br>
+<h2>4. EXIGENCES TECHNIQUES</h2>
+<br>
+<h3>4.1 Technologies retenues</h3>
+<br>
+<table><tr><th>Composant</th><th>Technologie</th><th>Justification</th></tr>
+<tr><td>App mobile/web</td><td>Flutter 3.35</td><td>Cross-platform, code unique</td></tr></table>
+<tr><td>State management</td><td>Provider</td><td>Simple, éprouvé</td></tr>
+<tr><td>Base de données</td><td>Firebase Firestore</td><td>Temps réel, gratuit</td></tr></table>
+<tr><td>Authentification</td><td>Firebase Auth</td><td>Sécurisé, simple</td></tr>
+<tr><td>Stockage médias</td><td>Firebase Storage</td><td>Intégré à Firebase</td></tr></table>
+<tr><td>Hébergement</td><td>Cloudflare Pages</td><td>Gratuit, rapide</td></tr>
+<tr><td>APK Android</td><td>Flutter build</td><td>Distribution directe</td></tr></table>
+<br>
+<h3>4.2 Plateformes cibles</h3>
+<li class="badge-ok">✅ b (Chrome, Firefox, Safari, Edge)</li>
+<li class="badge-ok">✅ droid (APK téléchargeable ou Google Play)</li>
+<li>⏳ iOS (phase 2 — nécessite compte Apple Developer)</li>
+<br>
+<h3>4.3 Compatibilité</h3>
+<li>Smartphone (portrait) — priorité</li>
+<li>Tablette (portrait et paysage)</li>
+<li>PC/Mac (navigateur web)</li>
+<li>Résolution minimum : 360 × 640 px</li>
+<br>
+<h3>4.4 Performance</h3>
+<li>Chargement initial < 3 secondes</li>
+<li>Fluidité 60 fps</li>
+<li>Fonctionnement hors-ligne partiel (jeux déjà chargés)</li>
+<li>Synchronisation automatique au retour en ligne</li>
+<br>
+<h3>4.5 Sécurité</h3>
+<li>Authentification sécurisée pour les professeurs</li>
+<li>Données étudiants conformes RGPD</li>
+<li>Pas de données personnelles sensibles collectées</li>
+<li>Règles Firestore : lecture/écriture contrôlées par rôle</li>
+<br>
+<hr>
+<br>
+<h2>5. EXIGENCES NON FONCTIONNELLES</h2>
+<br>
+<h3>5.1 Ergonomie</h3>
+<li>Interface intuitive, prise en main < 2 minutes</li>
+<li>Accessibilité : contraste suffisant, police lisible</li>
+<li>Mode sombre natif (thème Navy Blue)</li>
+<li>Responsive sur tous les écrans</li>
+<br>
+<h3>5.2 Maintenabilité</h3>
+<li>Code modulaire : chaque jeu est un module indépendant</li>
+<li>Documentation du code</li>
+<li>Ajout d'un nouveau jeu sans modifier le code existant</li>
+<li>Mise à jour des questions sans recompiler l'app</li>
+<br>
+<h3>5.3 Scalabilité</h3>
+<li>Architecture supportant 1 à 10 000 utilisateurs simultanés</li>
+<li>Firebase scale automatiquement</li>
+<li>Quota gratuit Firebase : 50 000 lectures/jour (largement suffisant)</li>
+<br>
+<hr>
+<br>
+<h2>6. MAQUETTES & DESIGN</h2>
+<br>
+<h3>6.1 Charte graphique</h3>
+<li>Couleur principale : à définir (3 styles proposés)</li>
+<li>Police : système (Roboto / SF Pro)</li>
+<li>Style : Material Design 3</li>
+<li>Ton : professionnel mais engageant</li>
+<br>
+<h3>6.2 Écrans principaux — Espace Étudiant</h3>
+<p>1. Écran d'accueil / Connexion</p>
+<p>2. Catalogue des jeux</p>
+<p>3. Fiche d'un jeu</p>
+<p>4. Écran de configuration (solo/équipe)</p>
+<p>5. Écran de jeu (question + timer)</p>
+<p>6. Écran d'explication</p>
+<p>7. Résultats de la session</p>
+<p>8. Tableau de bord étudiant</p>
+<p>9. Classement de la promo</p>
+<br>
+<h3>6.3 Écrans principaux — Espace Professeur</h3>
+<p>1. Login professeur</p>
+<p>2. Dashboard principal</p>
+<p>3. Liste des jeux</p>
+<p>4. Éditeur de jeu (infos générales)</p>
+<p>5. Éditeur de questions (liste + formulaire)</p>
+<p>6. Gestion des promotions</p>
+<p>7. Création de session</p>
+<p>8. Suivi de session en direct</p>
+<p>9. Statistiques détaillées</p>
+<p>10. Export des résultats</p>
+<br>
+<hr>
+<br>
+<h2>7. PLAN DE DÉVELOPPEMENT</h2>
+<br>
+<h3>Phase 1 — MVP (Minimum Viable Product) — 2-3 jours</h3>
+<pre>
+✦ Structure de la plateforme
+✦ Espace étudiant : connexion + catalogue + Legal Quest intégré
+✦ Sauvegarde des scores Firebase
+✦ Dashboard prof basique (scores + liste étudiants)
+</pre>
+<br>
+<h3>Phase 2 — Éditeur de contenu — 2-3 jours</h3>
+<pre>
+✦ Éditeur de questions complet
+✦ Création de nouveaux jeux
+✦ Gestion des promotions
+✦ Export CSV
+</pre>
+<br>
+<h3>Phase 3 — Fonctionnalités avancées — 2-3 jours</h3>
+<pre>
+✦ Mode Classe (vote en temps réel)
+✦ Statistiques avancées + graphiques
+✦ Badges et gamification avancée
+✦ QR codes de session
+</pre>
+<br>
+<h3>Phase 4 — Publication — 1 jour</h3>
+<pre>
+✦ Déploiement Cloudflare Pages
+✦ Build APK Android
+✦ Tests utilisateurs
+✦ Documentation utilisateur
+</pre>
+<br>
+<hr>
+<br>
+<h2>8. BUDGET & COÛTS</h2>
+<br>
+<h3>Développement</h3>
+<table><tr><th>Poste</th><th>Coût</th></tr>
+<tr><td>Développement application</td><td>Réalisé via IA (0 €)</td></tr></table>
+<tr><td>Design / maquettes</td><td>Réalisé via IA (0 €)</td></tr>
+<br>
+<h3>Infrastructure (mensuel)</h3>
+<table><tr><th>Service</th><th>Quota gratuit</th><th>Coût si dépassement</th></tr>
+<tr><td>Firebase Firestore</td><td>50K lectures/jour</td><td>~0,06 €/10K lectures</td></tr></table>
+<tr><td>Firebase Auth</td><td>10K users/mois</td><td>Gratuit jusqu'à 10K</td></tr>
+<tr><td>Firebase Storage</td><td>5 Go</td><td>0,026 €/Go</td></tr></table>
+<tr><td>Cloudflare Pages</td><td>Illimité</td><td>0 €</td></tr>
+<table><tr><th>**TOTAL**</th><th>**Pour < 500 étudiants**</th><th>**0 €/mois**</th></tr>
+<br>
+<h3>Optionnel</h3>
+<table><tr><th>Service</th><th>Coût</th></tr>
+<tr><td>Domaine personnalisé (mxc-formations.fr)</td><td>~10 €/an</td></tr></table>
+<tr><td>Google Play (Android)</td><td>25 € une fois</td></tr>
+<tr><td>Apple App Store (iOS)</td><td>99 €/an</td></tr></table>
+<br>
+<hr>
+<br>
+<h2>9. LIVRABLES</h2>
+<br>
+<table><tr><th>Livrable</th><th>Format</th><th>Délai</th></tr>
+<tr><td>Application web étudiants</td><td>URL publique</td><td>Phase 1</td></tr></table>
+<tr><td>Application web professeur</td><td>URL publique</td><td>Phase 1</td></tr>
+<tr><td>Code source complet</td><td>Archive .tar.gz</td><td>Phase 1</td></tr></table>
+<tr><td>APK Android</td><td>Fichier .apk</td><td>Phase 4</td></tr>
+<tr><td>Guide utilisateur étudiant</td><td>PDF</td><td>Phase 4</td></tr></table>
+<tr><td>Guide utilisateur professeur</td><td>PDF</td><td>Phase 4</td></tr>
+<br>
+<hr>
+<br>
+<h2>10. CRITÈRES D'ACCEPTATION</h2>
+<br>
+<h3>L'application est considérée comme livrée si :</h3>
+<li>☐ Un étudiant peut rejoindre la plateforme avec un code promo</li>
+<li>☐ Un étudiant peut jouer à Legal Quest et voir son score sauvegardé</li>
+<li>☐ Le professeur peut se connecter avec email/mot de passe</li>
+<li>☐ Le professeur voit en temps réel les scores des étudiants</li>
+<li>☐ Le professeur peut créer un nouveau jeu avec des questions</li>
+<li>☐ Le professeur peut exporter les résultats en CSV</li>
+<li>☐ L'application fonctionne sur mobile (Android) et navigateur web</li>
+<li>☐ Les données sont sauvegardées même après fermeture de l'app</li>
+<br>
+<hr>
+<br>
+<h2>11. ÉVOLUTIONS FUTURES (V2)</h2>
+<br>
+<li>Mode multijoueur en temps réel (WebSocket)</li>
+<li>Génération de questions par IA (ChatGPT API)</li>
+<li>Application iOS native</li>
+<li>Intégration LMS (Moodle, Blackboard)</li>
+<li>Tableau de bord analytics avancé</li>
+<li>Monétisation : marketplace de jeux entre profs</li>
+<li>Certification des parcours (badges numériques)</li>
+<li>Mode tournoi inter-promotions</li>
+<br>
+<hr>
+<br>
+<p><em>Document rédigé le 28 mars 2025</em></p>
+<p><em>MxC Formations — Plateforme Éducative Gamifiée</em></p>
+<p><em>Version 1.0</em></p>
+<br>
+
+<footer><p>MxC Formations — Cahier des Charges V1.0 — Mars 2025</p></footer></body></html>
